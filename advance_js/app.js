@@ -364,6 +364,9 @@ let arr = [
     id: 1,
     name: "ABC",
     isApproved: true,
+    amount: 330,
+    category: "A",
+    isSelected: true,
     address: {
       street: "ABC Street",
       city: "Karachi",
@@ -374,6 +377,9 @@ let arr = [
     id: 2,
     name: "JKL",
     isApproved: true,
+    amount: 430,
+    category: "B",
+    isSelected: true,
     address: {
       street: "ABC Street",
       city: "Karachi",
@@ -384,6 +390,9 @@ let arr = [
     id: 3,
     name: "MNO",
     isApproved: false,
+    amount: 100,
+    category: "A",
+    isSelected: true,
     address: {
       street: "ABC Street",
       city: "Karachi",
@@ -394,6 +403,9 @@ let arr = [
     id: 4,
     name: "TUY",
     isApproved: true,
+    amount: 75,
+    category: "A",
+    isSelected: true,
     address: {
       street: "ABC Street",
       city: "Karachi",
@@ -404,6 +416,9 @@ let arr = [
     id: 5,
     name: "XYZ",
     isApproved: false,
+    amount: 1000,
+    category: "B",
+    isSelected: true,
     address: {
       street: "ABC Street",
       city: "Karachi",
@@ -424,11 +439,178 @@ let arr = [
 // filter
 
 // let arr2 = arr.map((x) => x.isApproved);
-let arr2 = arr.filter((x) => x.isApproved).map((x) => x.address);
+// let arr2 = arr.filter((x) => x.category == "A" && !x.isApproved);
 
 // let arr2 = arr.forEach((x, i) => {
 //   let obj = { ...x };
 //   obj.rollNumber = `STD-${i + 1}`;
 // });
 
-console.log(arr3);
+// console.log(arr2);
+
+// let finalAmount = 0;
+
+// arr.forEach((x) => {
+//   if (x.isApproved) {
+//     finalAmount += x.amount;
+//   }
+// });
+
+// console.log(finalAmount);
+
+// let arr = [
+//   {
+//     brand: "Samsung",
+//     model: "A30",
+//     price: "40000",
+//     camera: "40px",
+//     ram: "8gb",
+//     rom: "128gb",
+//   },
+//   {
+//     brand: "Samsung",
+//     model: "A10",
+//     price: "40000",
+//     camera: "40px",
+//     ram: "4gb",
+//     rom: "128gb",
+//   },
+//   {
+//     brand: "Samsung",
+//     model: "A20",
+//     price: "40000",
+//     camera: "40px",
+//     ram: "4gb",
+//     rom: "128gb",
+//   },
+//   {
+//     brand: "Vivo",
+//     model: "Y20",
+//     price: "20000",
+//     camera: "40px",
+//     ram: "2gb",
+//     rom: "32gb",
+//   },
+//   {
+//     brand: "Vivo",
+//     model: "Y11",
+//     price: "20000",
+//     camera: "40px",
+//     ram: "3gb",
+//     rom: "32gb",
+//   },
+//   {
+//     brand: "Vivo",
+//     model: "Y15",
+//     price: "30000",
+//     camera: "40px",
+//     ram: "4gb",
+//     rom: "64gb",
+//   },
+//   {
+//     brand: "Motorola",
+//     model: "123",
+//     price: "5000",
+//     camera: "2px",
+//     ram: "2gb",
+//     rom: "32gb",
+//   },
+//   {
+//     brand: "Iphone",
+//     model: "12",
+//     price: "300000",
+//     camera: "40px",
+//     ram: "8gb",
+//     rom: "128gb",
+//   },
+//   {
+//     brand: "Iphone",
+//     model: "13",
+//     price: "300000",
+//     camera: "40px",
+//     ram: "8gb",
+//     rom: "128gb",
+//   },
+//   {
+//     brand: "Iphone",
+//     model: "X",
+//     price: "300000",
+//     camera: "40px",
+//     ram: "8gb",
+//     rom: "128gb",
+//   },
+// ];
+
+// let brandSelect = document.getElementById("company");
+// let modelSelect = document.getElementById("model");
+
+// let brands = arr.map((x) => x.brand);
+// brands = [...new Set(brands)];
+// console.log(brands);
+
+// brandSelect.innerHTML += brands.map(
+//   (x) => `<option value="${x}">${x}</option>`
+// );
+
+// let selectBrand = () => {
+//   let selectedBrand = brandSelect.value;
+//   let models = arr.filter((x) => x.brand == selectedBrand);
+//   console.log(models);
+//   modelSelect.innerHTML = "";
+//   modelSelect.innerHTML += models.map(
+//     (x) => `<option value="${x.model}">${x.model}</option>`
+//   );
+// };
+
+// let tableBody = document.getElementById("tableBody");
+// tableBody.innerHTML += arr.map(
+//   (x) => `
+// <tr>
+// <td>${x.brand}</td>
+// <td>${x.model}</td>
+// <td>${x.camera}</td>
+// <td>${x.price}</td>
+// <td>${x.ram}</td>
+// <td>${x.rom}</td>
+// </tr>`
+// );
+
+// let brands = [];
+// arr.forEach((x) => {
+//   if (!brands.includes(x.brand)) {
+//     brands.push(x.brand);
+//   }
+// });
+// console.log(brands);
+
+// let obj = arr.find((x) => x.id == 10);
+// console.log(obj);
+
+// let i = arr.findIndex((x) => x.id == 5);
+// console.log(i);
+
+// let arr2 = [[1], 2, 3, 4, [[5], [6]]];
+// let arr3 = arr2.flat(Infinity);
+
+// console.log(arr3);
+
+// let a = Math.max(...arr3);
+// console.log(a);
+
+// let a = [1, 2, 3, 4, 5, 6];
+
+// let sum = arr.reduce((x, y) => {
+//   console.log(x, y);
+//   return x + y.amount;
+// }, 0);
+
+// console.log(sum);
+
+// some
+
+// let anyObjSelected = arr.some((x) => x.isSelected);
+// console.log(anyObjSelected);
+// some
+
+let everyObjSelected = arr.every((x) => x.isSelected);
+console.log(everyObjSelected);
