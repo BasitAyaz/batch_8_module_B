@@ -183,6 +183,60 @@
 // custom types objType = {id:number, name:string}
 // array in Objects = objType[]
 
+// type objType = {
+
+// }
+
+// interface user {
+//     id:number,
+//     name:string,
+//     age:number,
+//     isAdmin:boolean,
+//     contact?:string
+// }
+
+// interface Employee extends user {
+//     companyName : string,
+//     joiningDate : Date,
+//     salary : number
+// }
+
+// let emp1:Employee = {
+//     id:1,
+//     name:"ABC",
+//     age:18,
+//     isAdmin:false,
+//     companyName : "ABC",
+//     joiningDate: new Date(),
+//     salary : 85,
+// }
+
+
+
+interface user {
+    id:number,
+    name:string,
+    age:number
+}
+
+interface Emp <T> {
+    companyName:string,
+    joiningDate:Date,
+    extras:T[]
+}
+
+let obj:Emp<user> = {
+    companyName:'ABC',
+    joiningDate:new Date(),
+    extras:[
+        {
+            id:1,
+            name:'ABC',
+            age:18
+        }
+    ]
+}
+
 
 
 
