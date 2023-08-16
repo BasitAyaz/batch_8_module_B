@@ -1,28 +1,27 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
-import dummy from "./assets/dummy.svg";
 
 function App() {
+  const [text, setText] = useState("");
+  const [list, setList] = useState([]);
+
+  let add = () => {
+    list.push(text);
+    setList([...list]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={dummy} width="200px" />
-        <img
-          src="http://dorsin.react.themesbrand.com/assets/images/team/img-1.jpg"
-          width="200px"
-        />
-        <p>Abdul Basit Ahmed</p>
-        <p>First Class of React</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <button onClick={add}>Add</button>
+
+      {list.map((x, i) => (
+        <p key={i}>{x}</p>
+      ))}
     </div>
   );
 }
