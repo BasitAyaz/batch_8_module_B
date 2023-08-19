@@ -1,29 +1,52 @@
-import { useState } from "react";
-import "./App.css";
+import SMButton from "./components/SMButton";
+import SMCard from "./components/SMCard";
 
-function App() {
-  const [text, setText] = useState("");
-  const [list, setList] = useState([]);
-
-  let add = () => {
-    list.push(text);
-    setList([...list]);
+export default function App() {
+  let testing = () => {
+    console.log("Testing");
   };
 
-  return (
-    <div>
-      <input
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-      <button onClick={add}>Add</button>
+  let users = [
+    {
+      id: 1,
+      name: "ABC",
+      age: 18,
+      isActive: true,
+    },
+    {
+      id: 2,
+      name: "JKL",
+      age: 18,
+      isActive: true,
+    },
+    {
+      id: 3,
+      name: "TYU",
+      age: 18,
+      isActive: true,
+    },
+    {
+      id: 4,
+      name: "OPO",
+      age: 18,
+      isActive: true,
+    },
+  ];
 
-      {list.map((x, i) => (
-        <p key={i}>{x}</p>
-      ))}
-    </div>
+  return (
+    <>
+      <div>
+        <h1>Components</h1>
+        {users.map((x, i) => {
+          return (
+            <SMCard id={x.id} name={x.name} age={x.age} isActive={x.isActive} />
+          );
+        })}
+      </div>
+    </>
   );
 }
 
-export default App;
+// Create a component of Card which takes data in props
+// Create a list of users containing properties id,name,age,institute,isActive
+// play Map of this list and render data in cards.
