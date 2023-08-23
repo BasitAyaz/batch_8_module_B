@@ -1,47 +1,32 @@
+import { useState } from "react";
 import SMButton from "./components/SMButton";
 import SMCard from "./components/SMCard";
+import SMSelect from "./components/SMSelect";
 
 export default function App() {
-  let testing = () => {
-    console.log("Testing");
-  };
-
-  let users = [
-    {
-      id: 1,
-      name: "ABC",
-      age: 18,
-      isActive: true,
-    },
-    {
-      id: 2,
-      name: "JKL",
-      age: 18,
-      isActive: true,
-    },
-    {
-      id: 3,
-      name: "TYU",
-      age: 18,
-      isActive: true,
-    },
-    {
-      id: 4,
-      name: "OPO",
-      age: 18,
-      isActive: true,
-    },
-  ];
+  const [gender, setGender] = useState();
 
   return (
     <>
       <div>
         <h1>Components</h1>
-        {users.map((x, i) => {
-          return (
-            <SMCard id={x.id} name={x.name} age={x.age} isActive={x.isActive} />
-          );
-        })}
+
+        <SMSelect
+          getValue={(e) => {
+            console.log("App.js", e);
+          }}
+          label="Gender"
+          options={[
+            {
+              value: "male",
+              displayName: "Male",
+            },
+            {
+              value: "female",
+              displayName: "Female",
+            },
+          ]}
+        />
       </div>
     </>
   );
