@@ -1,5 +1,18 @@
+import {
+  Box,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import "./App.css";
+import BAButton from "./components/BAButton";
+import BAInput from "./components/BAInput";
 import BATable from "./components/BATable";
+import "bootstrap/dist/css/bootstrap.min.css";
+import MicIcon from "@mui/icons-material/Mic";
 
 function App() {
   let data = [
@@ -575,42 +588,54 @@ function App() {
 
   return (
     <div className="App">
-      <BATable
-        label="Testing data"
-        cols={[
-          {
-            heading: "Id",
-            key: "id",
-          },
-          {
-            heading: "Title",
-            key: "title",
-          },
-          {
-            heading: "Complete Status",
-            key: "completed",
-          },
-        ]}
-        datasourse={data}
-      />
-      <BATable
-        label="Testing Data 2"
-        datasourse={data2}
-        cols={[
-          { heading: "id", key: "id" },
-          { heading: "mail", key: "email" },
-          { heading: "abc", key: "body" },
-        ]}
-      />
-      <BATable
-        label="Testing Data 2"
-        datasourse={data2}
-        cols={[
-          { heading: "id", key: "id" },
-          { heading: "mail", key: "email" },
-          { heading: "abc", key: "body" },
-        ]}
-      />
+      <BAButton />
+      <BAInput />
+
+      <Box>
+        <Grid container>
+          <Grid item xs={12} sm={6} md={3}>
+            <Box className="bg-primary p-2">
+              <List>
+                <ListItem>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <MicIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <MicIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <MicIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <MicIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={9}>
+            <Box className="bg-warning p-5"></Box>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
   );
 }

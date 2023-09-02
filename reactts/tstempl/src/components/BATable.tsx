@@ -9,7 +9,7 @@ export default function BATable(props: tableProps) {
   return (
     <>
       <div>
-        <table border={1}>
+        <table className="table table-striped table-bordered">
           <thead>
             <tr>
               {cols.map((x, i) => (
@@ -21,7 +21,7 @@ export default function BATable(props: tableProps) {
             {datasourse.map((row, i) => (
               <tr>
                 {cols.map((col, ind) => (
-                  <td>{row[col.key]}</td>
+                  <td>{col.type == "boolean"? row[col.key]?"Yes":"No":row[col.key] }</td>
                 ))}
               </tr>
             ))}
