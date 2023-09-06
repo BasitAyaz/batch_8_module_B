@@ -21,6 +21,8 @@ import Message from "./dashboardpages/message";
 import Notification from "./dashboardpages/notification";
 import MessageIcon from "@mui/icons-material/Message";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import PostScreen from "./dashboardpages/post";
+import Singlepost from "./dashboardpages/singlePost";
 
 const drawerWidth = 240;
 
@@ -36,6 +38,11 @@ function DashboardPage(props) {
     {
       name: "Notification",
       route: "notification",
+      icon: <NotificationsIcon />,
+    },
+    {
+      name: "Posts",
+      route: "post",
       icon: <NotificationsIcon />,
     },
   ]);
@@ -144,6 +151,8 @@ function DashboardPage(props) {
         <Routes>
           <Route path="message" element={<Message />} />
           <Route path="notification" element={<Notification />} />
+          <Route path="post" element={<PostScreen />} />
+          <Route path="singlePost/:id" element={<Singlepost />} />
         </Routes>
       </Box>
     </Box>
