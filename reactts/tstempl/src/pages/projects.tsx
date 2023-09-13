@@ -5,6 +5,7 @@ import axios from "axios";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { Get, apiHandle } from "../config/apimethods";
 
 export default function Projects() {
   const [listData, setListData] = useState<any>([]);
@@ -12,8 +13,8 @@ export default function Projects() {
   const navigate = useNavigate();
 
   const deletePost = (id: any) => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    apiHandle
+      .delete(`posts/${id}`)
       .then(() => {
         console.log("Post Deleted Successfully");
       })
@@ -23,8 +24,7 @@ export default function Projects() {
   };
 
   let getData = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+    Get("posts")
       .then((res) => {
         setListData([...res.data]);
       })
