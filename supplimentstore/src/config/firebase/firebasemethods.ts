@@ -1,4 +1,4 @@
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged,signOut  } from "firebase/auth";
 import { getDatabase,ref,set,onValue,push } from "firebase/database";
 import { app } from "./firebaseconfig";
 
@@ -76,9 +76,9 @@ export let fbAuth=()=>{
 export let fbAdd=(nodeName:string,body:any,id?:string)=>{
     return new Promise((resolve,reject)=>{
         
-        const TaskId = push(ref(db,`${nodeName}/`)).key        
+        const id = push(ref(db,`${nodeName}/`)).key        
 
-        body.id = TaskId
+        body.id = id
 
 
         const referece = ref(db,`${nodeName}/${body.id}`)
@@ -105,3 +105,6 @@ export let fbGet=(nodeName:string,id?:any)=>{
 export let fbDelete=()=>{}
 export let fbEdit=()=>{}
 export let fbGetById=()=>{}
+export let fbLogout=()=>{
+    return signOut(auth)      
+}
