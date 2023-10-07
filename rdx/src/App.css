@@ -1,0 +1,9 @@
+.productCard {
+  width: 300px;
+  border: 1px solid black;
+  display: inline-block;
+  height: 500px;
+  vertical-align: top;
+  text-align: center;
+  padding: 20px;
+}
