@@ -12,6 +12,10 @@ const UserSchema = mongoose.Schema({
   contact: {
     type: String,
   },
+  userType: {
+    type: String,
+    enum: ["admin", "user"],
+  },
 });
 
 const UserModel = mongoose.model("users", UserSchema);

@@ -9,6 +9,9 @@ App.use(express.json());
 
 App.use("/course", courseRoute);
 App.use("/auth", authRoute);
+App.get("/", (req, res) => {
+  res.send("Server Started");
+});
 
 mongoose
   .connect(process.env.MONGO_URI)

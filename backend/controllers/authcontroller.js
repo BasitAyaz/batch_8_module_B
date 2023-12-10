@@ -1,3 +1,4 @@
+const { transporter } = require("../config/nodemailer");
 const { SendResponse } = require("../helpers/helpers");
 const UserModel = require("../models/authmodel");
 const bcrypt = require("bcryptjs");
@@ -6,8 +7,8 @@ const jwt = require("jsonwebtoken");
 const AuthController = {
   signUp: async (req, res) => {
     try {
-      let { userName, password, contact } = req.body;
-      let obj = { userName, password, contact };
+      let { userName, password, contact, userType } = req.body;
+      let obj = { userName, password, contact, userType };
       let errArr = [];
 
       if (!obj.userName) {
@@ -60,6 +61,21 @@ const AuthController = {
         if (corerctPassword) {
           let token = jwt.sign({ ...existingUser }, process.env.SECRET_KEY);
 
+          var mailOptions = {
+            from: "wecam76300@mcenb.com",
+            to: "basitahmed1997@gmail.com",
+            subject: "Login Alert",
+            text: "That was easy!",
+          };
+
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+
           res.send(
             SendResponse(true, "Login Successfully", {
               token: token,
@@ -74,7 +90,56 @@ const AuthController = {
       }
     } catch (error) {}
   },
-  protected: () => {},
+  checkAuth: async (req, res) => {
+    let token = req.headers.authorization.replace("Bearer ", "");
+    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+      if (err) {
+        res.status(401).send(SendResponse(false, "Un Authorized"));
+      } else {
+        res.status(200).send(SendResponse(true, "", decode._doc));
+      }
+    });
+  },
+  getUsers: async (req, res) => {
+    try {
+      let result = await UserModel.find();
+      if (!result) {
+        res.status(404).send(SendResponse(false, "Data Not Found"));
+      } else {
+        res.status(200).send(SendResponse(true, "", result));
+      }
+    } catch (error) {
+      res.status(400).send(SendResponse(false, "Internal Server Error", error));
+    }
+  },
+  protected: (req, res, next) => {
+    let token = req.headers.authorization.replace("Bearer ", "");
+    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+      if (err) {
+        res.status(401).send(SendResponse(false, "Un Authorized", err));
+      } else {
+        next();
+      }
+    });
+  },
+  adminProtected: (req, res, next) => {
+    let token = req.headers.authorization.replace("Bearer ", "");
+    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+      if (err) {
+        res.status(401).send(SendResponse(false, "Un Authorized", err));
+      } else {
+        if (decode._doc.userType == "admin") {
+          next();
+        } else {
+          res
+            .status(401)
+            .send(
+              SendResponse(false, "You Have no rights for this action", err)
+            );
+        }
+      }
+    });
+  },
 };
 
 module.exports = AuthController;
